@@ -1,0 +1,6 @@
+Revision history for Perl extension DateTime::TimeZone::LMT.
+
+1.00  Sat Oct 18 15:46:19 2003
+	- original version; created by h2xs 1.22 with options
+		-X -v1.00 --use-new-tests -nDateTime::TimeZone::LMT
+
