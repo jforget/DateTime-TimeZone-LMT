@@ -3,7 +3,7 @@ package DateTime::TimeZone::LMT;
 use strict;
 use vars qw( $VERSION );
 
-$VERSION = '1.00';
+$VERSION = '1.01';
 
 use Params::Validate qw( validate validate_pos SCALAR ARRAYREF BOOLEAN );
 use Carp;
