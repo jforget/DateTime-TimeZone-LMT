@@ -1,3 +1,10 @@
+# -*- encoding: utf-8; indent-tabs-mode: nil -*-
+#
+#     Perl DateTime extension for creating a custom time zone for local solar mean time
+#     Copyright (C) 2003, 2016 Rick Measham and Jean Forget
+#
+#     See the license in the embedded documentation below.
+#
 package DateTime::TimeZone::LMT;
 
 use strict;
