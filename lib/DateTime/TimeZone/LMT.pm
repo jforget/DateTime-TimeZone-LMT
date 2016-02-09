@@ -225,11 +225,11 @@ anything other than display.
 
 Creates an alias that can be called as a string by DateTime methods.
 
-This means you can C<$dt = DateTime->new( time_zone => 'LMT' )> rather
-than the normal C<$dt = DateTime->new( time_zone => $lmt )>. This is of
+This means you can C<< $dt = DateTime->new( time_zone => 'LMT' ) >> rather
+than the normal C<< $dt = DateTime->new( time_zone => $lmt ) >>. This is of
 little benefit unless you're accepting a time zone name from a user.
 
-If the optional $alias_name is provided then that will be the alias 
+If the optional C<$alias_name> is provided then that will be the alias 
 created. Otherwise the alias is 'LMT'. Multiple aliases can be created
 from the one object.
 
@@ -280,16 +280,18 @@ Given a longitude, this method returns a string offset.
 =head1 SUPPORT
 
 Support for this module is provided via the datetime@perl.org email
-list.  See http://lists.perl.org/ for more details.
+list.  See L<http://lists.perl.org/> for more details.
 
 Please submit bugs to the CPAN RT system at
-http://rt.cpan.org/NoAuth/ReportBug.html?Queue=datetime%3A%3Atimezone%3A%3Almt
+L<http://rt.cpan.org/NoAuth/ReportBug.html?Queue=datetime%3A%3Atimezone%3A%3Almt>
 or via email at bug-datetime-timezone-lmt@rt.cpan.org.
 
 =head1 AUTHOR
 
 Rick Measham <rickm@cpan.org> with parts taken from DateTime::TimeZone
 by Dave Rolsky <autarch@urth.org>.
+
+Co-maintainer: Jean Forget (JFORGET at cpan dot org).
 
 =head1 COPYRIGHT
 
