@@ -36,9 +36,9 @@ use lib File::Spec->catdir( File::Spec->curdir, 't' );
 
 use DateTime::TimeZone::LMT;
 
-plan tests => 10;
+plan tests => 16;
 
-my $LMT = new DateTime::TimeZone::LMT( longitude => 150 );
+my $LMT = DateTime::TimeZone::LMT->new( longitude => 150 );
 my $dt;
 
 eval { $dt = DateTime->now( time_zone => $LMT ) };
@@ -64,13 +64,49 @@ eval {
 };
 is( $dt->hour, 1, 'make sure that we can convert to LMT' );
 
+my $melb = DateTime::TimeZone->new(name => 'Australia/Melbourne');
+
+eval { 
+        $dt = DateTime->new( 
+                year => 2003, month => 10, day => 18, hour => 1, 
+                time_zone => $LMT, 
+        )->set_time_zone( $melb );
+};
+is( $dt->hour, 1, 'make sure that we can convert from LMT (object) to Olson (object)' );
+
 eval { 
 	$dt = DateTime->new( 
 		year => 2003, month => 10, day => 18, hour => 1, 
 		time_zone => $LMT, 
 	)->set_time_zone( 'Australia/Melbourne' );
 };
-is( $dt->hour, 1, 'make sure that we can convert from LMT to Olson' );
+is( $dt->hour, 1, 'make sure that we can convert from LMT (object) to Olson (name)' );
+
+eval { 
+        $dt = DateTime->new( 
+                year => 2003, month => 10, day => 18, hour => 1, 
+                time_zone => 'LMT', 
+        )->set_time_zone( $melb );
+};
+is( $dt->hour, 1, 'make sure that we can convert from LMT (name) to Olson (object)' );
+
+eval { 
+        $dt = DateTime->new( 
+                year => 2003, month => 10, day => 18, hour => 1, 
+                time_zone => 'LMT', 
+        )->set_time_zone( 'Australia/Melbourne' );
+};
+is( $dt->hour, 1, 'make sure that we can convert from LMT (name) to Olson (name)' );
+
+my $float = DateTime::TimeZone->new(name => 'floating');
+
+eval { 
+        $dt = DateTime->new( 
+                year => 2003, month => 10, day => 18, hour => 1, 
+                time_zone => $LMT, 
+        )->set_time_zone( $float );
+};
+is( $dt->hour, 1, 'make sure that we can convert from LMT (object) to Floating (object)' );
 
 eval { 
 	$dt = DateTime->new( 
@@ -78,7 +114,23 @@ eval {
 		time_zone => $LMT, 
 	)->set_time_zone( 'floating' );
 };
-is( $dt->hour, 1, 'make sure that we can convert from LMT to Floating' );
+is( $dt->hour, 1, 'make sure that we can convert from LMT (object) to Floating (name)' );
+
+eval { 
+        $dt = DateTime->new( 
+                year => 2003, month => 10, day => 18, hour => 1, 
+                time_zone => 'LMT', 
+        )->set_time_zone( $float );
+};
+is( $dt->hour, 1, 'make sure that we can convert from LMT (name) to Floating (object)' );
+
+eval { 
+        $dt = DateTime->new( 
+                year => 2003, month => 10, day => 18, hour => 1, 
+                time_zone => 'LMT', 
+        )->set_time_zone( 'floating' );
+};
+is( $dt->hour, 1, 'make sure that we can convert from LMT (name) to Floating (name)' );
 
 eval { 
 	$dt = DateTime->new( 
