@@ -1,0 +1,74 @@
+-*- encoding: utf-8; indent-tabs-mode: nil -*-
+
+See Merijn's checklist:
+https://github.com/Tux/Release-Checklist/blob/master/Checklist.md
+
+Check version number in:
+-- Changes
+-- Makefile.PL (no, use "VERSION_FROM")
+-- lib/DateTime/TimeZone/LMT.pm
+
+Check copyright years in:
+-- Makefile.PL
+-- lib/DateTime/TimeZone/LMT.pm top-file comments
+-- lib/DateTime/TimeZone/LMT.pm POD "COPYRIGHT" paragraph
+-- t/*.t
+
+Check release date in:
+-- Changes
+
+Checks by file
+--------------
+
+lib/DateTime/TimeZone/LMT.pm top of the file
+-- version number
+-- copyright years
+
+lib/DateTime/TimeZone/LMT.pm POD "COPYRIGHT" paragraph
+-- copyright years
+
+Makefile.PL
+-- version number (no, use "VERSION_FROM")
+-- copyright years
+
+t/*.t
+-- copyright years
+
+MANIFEST
+-- among others, check that all new test files are mentionned
+
+Changes
+-- version number
+-- release date
+
+Kwalitee
+
+Test with all versions managed with perlbrew
+
+Coverage: preferably with perlbrew perl-lgdbl (or later?) instead of system perl
+
+Build META.{json,yml} and .tar.gz with perlbrew perl-lgdbl (or other? perl-5.20.2?)
+
+After creating the .tar.gz archive, check contents of META.{json,yml}:
+  version number (2x)
+  minimum perl version
+  provides (with version number)
+  repository
+  
+After release
+=============
+
+Github:
+    git tag -m 'Release to CPAN' v1.01
+    git push --tags -u origin master
+
+Change version number in:
+-- Changes
+-- Makefile.PL (no because...)
+-- lib/DateTime/TimeZone/LMT.pm
+
+Log to RT and change status to "patched"
+
+DateTime mailing list: ANNOUNCE the new version
+
+
