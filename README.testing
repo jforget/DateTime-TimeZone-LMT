@@ -1,0 +1,125 @@
+-*- encoding: utf-8; indent-tabs-mode: nil -*-
+
+=head1 Preliminary
+
+So, C<DateTime::TimeZone::LMT> does not C<make test>. Why?
+
+After a few debugging sessions, I have found that the problem is 
+the switch from a C<%DateTime::TimeZone::LINKS> variable
+to a C<%DateTime::TimeZone::Catalog::LINKS> variable
+during an upgrade of the C<DateTime::TimeZone> distribution.
+
+Digging into the C<Changes> file, I found that the switch did
+occur in 2008/08, with the 0.80 version. It is confirmed by the
+creation date of 
+L<https://rt.cpan.org/Ticket/Display.html?id=39340>.
+
+While the fix is now an easy one, how can I check it reliably?
+I must check with C<DateTime::TimeZone> versions before and
+after 0.80, up to the current version. Checking with the current version
+is done on my personal machine, but what about older versions?
+
+=head1 Sandbox
+
+My answer to this question is to use a sandbox. I am not sure
+I would not make mistakes if using L<local::lib> on my machine,
+so I need a more isolated sandbox.
+
+=head2 Basic sandbox
+
+I created a VirtualBox machine and I installed xubuntu-15.10
+(Wily Werewolf) on it. It includes perl-5.20.1 and the usual
+suite of core modules.
+
+=head2 Additional packages
+
+Update of the basic packages, because the ISO image is a few months old
+and does not include the security updates.
+I added a few packages with C<apt-get>: Emacs, perl-doc.
+
+=head2 Additional Perl modules
+
+Using the CPAN shell (included in the basic Wily Werewolf installation),
+I installed up-to-date Perl Modules: modules I cannot live without
+and prerequisites for C<DateTime> and C<DateTime::TimeZone>.
+
+=over 4
+
+=item * L<Module::Version>
+
+=item * L<Module::Build>
+
+=item * L<Class::ISA>
+
+=item * L<Class::Singleton>
+
+=item * L<Time::y2038>
+
+=back
+
+and possibly others that I did not write down.
+
+=head2 Main Perl Modules
+
+I extracted versions 0.78, 0.79, 0.80 and 0.81 of L<DateTime::TimeZone>
+from Backpan. To be consistent, I also extracted version 0.44
+of L<DateTime> and version 0.42 of L<DateTime::Locale>, because
+they were released in August or September 2008, so it ensures
+compatibility with the  L<DateTime::TimeZone> versions I need to check.
+
+I installed one version of  L<DateTime::TimeZone> and the vintage versions
+of L<DateTime::Locale> and L<DateTime> with the vintage mantra:
+
+  perl Build.PL
+  ./Build
+  ./Build test
+  sudo ./Build install
+
+There were errors with L<DateTime>, but I did not care and I installed it nevertheless, 
+the purpose is to run the L<DateTime::TimeZone::LMT> checks.
+
+=head1 Checking L<DateTime::TimeZone::LMT>
+
+=head2 Very first test
+
+The first test was done with L<DateTime::TimeZone> version 0.80 already
+installed (see above). It was done with:
+
+  tar -zxvf DateTime-TimeZone-LMT-1.00.tar.gz
+  cd DateTime-TimeZone-LMT-1.00
+  perl Makefile.PL
+  make
+  make test
+
+=head2 First round of tests
+
+I install some other L<DateTime::TimeZone> version (0.78 in the example) and I check
+L<DateTime::TimeZone::LMT> with:
+
+  tar -zxvf DateTime-TimeZone-0.78.tar.gz
+  cd DateTime-TimeZone-0.78
+  perl Build.PL
+  ./Build
+  ./Build test
+  sudo ./Build install
+  cd ../DateTime-TimeZone-LMT
+  make test
+
+=head2 Following tests
+
+After the first round, checking is much simpler:
+
+  cd DateTime-TimeZone-0.78
+  sudo ./Build install
+  cd ../DateTime-TimeZone-LMT
+  make test
+
+I still have to redo the full
+
+  tar -zxvf DateTime-TimeZone-LMT-1.00.tar.gz
+  cd DateTime-TimeZone-LMT-1.00
+  perl Makefile.PL
+  make
+  make test
+
+each time I change something in the module or its distribution.
