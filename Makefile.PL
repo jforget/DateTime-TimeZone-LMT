@@ -28,13 +28,51 @@
 use 5.005;
 use ExtUtils::MakeMaker;
 
-
-
 WriteMakefile(
-	'NAME'		=> 'DateTime::TimeZone::LMT',
-	'VERSION_FROM'	=> 'lib/DateTime/TimeZone/LMT.pm',
-	'PREREQ_PM'		=> {
-		DateTime => 0.12,
-	},
-	AUTHOR        => 'Rick Measham <rickm@cpan.org>'
+    'NAME'              => 'DateTime::TimeZone::LMT',
+    'VERSION_FROM'      => 'lib/DateTime/TimeZone/LMT.pm',
+    'ABSTRACT'          => 'Perl DateTime extension for a Local Mean Time time zone',
+    'PREREQ_PM'         => {
+                'DateTime'           => '0.12',
+                'DateTime::TimeZone' => '0',
+                'Carp'               => '0',
+                'Params::Validate'   => '0',
+    },
+    'AUTHOR'        => [ 'Rick Measham <rickm@cpan.org>', 'Jean Forget <JFORGET@cpan.org>' ],
+    'LICENSE'           => 'perl',
+    # The oldest Perl to check DT::TS::LMT 1.00 is 5.6.1. Therefore, I guess DT::TZ::LMT 1.01 and next will work in 5.6.1 too.
+    MIN_PERL_VERSION => '5.6.1',
+    META_MERGE       => {
+       prereqs => {
+         runtime => {
+           requires => {
+               'DateTime'           => '0.16',
+               'DateTime::TimeZone' => '0',
+               'Carp'               => '0',
+               'Params::Validate'   => '0',
+               'perl'               => '5.6.1',
+           },
+         },
+         build => {
+           requires => {
+             'Test::More'          => '0',
+             'ExtUtils::MakeMaker' => '6.57_02', # the first version to accept several authors in an arrayref
+           },
+         },
+       },
+       provides       => {
+           'DateTime::TimeZone::LMT' => {
+                file => 'lib/DateTime/TimeZone/LMT.pm',
+                version => '1.01',
+           },
+       },
+       'meta-spec' => { version => 2 },
+       resources => {
+           repository => {
+               type => 'git',
+               url  => 'https://github.com/jforget/DateTime-TimeZone-LMT.git',
+               web  => 'https://github.com/jforget/DateTime-TimeZone-LMT',
+           },
+       },
+    },
 );
