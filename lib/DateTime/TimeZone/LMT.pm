@@ -91,13 +91,16 @@ sub is_dst_for_datetime { 0 }
 sub category  { 'Solar' }
 
 sub make_alias {
-	my $self = shift;
-	my $name = shift || 'LMT';
+  my $self = shift;
+  my $name = shift || 'LMT';
 
-	#eval("use DateTime::TimeZone::Alias $name => ".$self->{offset});
-	#if (@_) {
-		$DateTime::TimeZone::LINKS{ $name } = $self->{offset};
-	#}
+  my $vers = $DateTime::TimeZone::VERSION;
+  if ($vers lt '0.80') {
+    $DateTime::TimeZone::LINKS{ $name } = $self->{offset};
+  }
+  else {
+    $DateTime::TimeZone::Catalog::LINKS{ $name } = $self->{offset};
+  }
 }
 
 #
