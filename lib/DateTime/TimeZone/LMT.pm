@@ -25,13 +25,18 @@ sub new {
 		name =>      { type => SCALAR, optional => 1 }
 	});
 	croak("Your longitude must be between -180 and +180") unless $p{longitude} <= 180 and $p{longitude} >= -180;
-	
+
 	my %self = (
 		longitude => $p{longitude},
 		offset => offset_at_longitude($p{longitude}),
 	);
-	$self{name} = $p{name} if exists $p{name};
-	
+        if (exists $p{name}) {
+          $self{name} = $p{name};
+        }
+        else {
+          $self{name} = '';
+        }
+
 	return bless \%self, $class;
 }
 
@@ -61,10 +66,10 @@ sub longitude {
 	if ($new_longitude) {	
 		croak("Your longitude must be between -180 and +180") 
 			unless $new_longitude <= 180 and $new_longitude >= -180;
-	
+
 		$self->{longitude} = $new_longitude;
 		$self->{offset} = offset_at_longitude($new_longitude);
-		
+
 	}
 	return $self->{longitude} 
 } 
@@ -112,7 +117,7 @@ sub offset_at_longitude {
 	# A function, not a class method
 
 	my $longitude = shift;
-	
+
 	my $offset_seconds = ( $longitude / 180 ) * (12 * 60 * 60);
 
 	return DateTime::TimeZone::offset_as_string( $offset_seconds );
