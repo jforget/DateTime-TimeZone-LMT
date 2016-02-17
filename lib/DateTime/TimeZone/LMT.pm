@@ -123,6 +123,16 @@ sub offset_at_longitude {
 	return DateTime::TimeZone::offset_as_string( $offset_seconds );
 }
 
+# A module should not end with a "false" value. So, traditionally,
+# modules end with an insipid, colourless, odourless, tasteless and boring "1;"
+# But this module is meant to (more or less) align times with the course 
+# of the sun. So instead of that, let us sing together:
+"For tomorrow may rain, so I'll follow the sun";
+
+__END__
+
+=encoding utf8
+
 =head1 NAME
 
 DateTime::TimeZone::LMT - A Local Mean Time time zone for DateTime
