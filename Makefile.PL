@@ -34,7 +34,7 @@ WriteMakefile(
     'ABSTRACT'          => 'Perl DateTime extension for a Local Mean Time time zone',
     'PREREQ_PM'         => {
                 'DateTime'           => '0.12',
-                'DateTime::TimeZone' => '0',
+                'DateTime::TimeZone' => '0.13',
                 'Carp'               => '0',
                 'Params::Validate'   => '0',
     },
@@ -46,8 +46,8 @@ WriteMakefile(
        prereqs => {
          runtime => {
            requires => {
-               'DateTime'           => '0.16',
-               'DateTime::TimeZone' => '0',
+               'DateTime'           => '0.12',
+               'DateTime::TimeZone' => '0.13',
                'Carp'               => '0',
                'Params::Validate'   => '0',
                'perl'               => '5.6.1',
