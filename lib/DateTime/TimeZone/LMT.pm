@@ -141,6 +141,7 @@ DateTime::TimeZone::LMT - A Local Mean Time time zone for DateTime
 
   use DateTime::TimeZone::LMT
 
+  # Somewhere in Hawaii
   my $tz_lmt = DateTime::TimeZone::LMT->new( 
     longitude => -174.2342
   );
@@ -159,6 +160,7 @@ DateTime::TimeZone::LMT - A Local Mean Time time zone for DateTime
   $tz_office->name;
   # Office
 
+  # Relocate office to the neighbourhood of Volgograd
   $tz_office->longitude( 45.123 );
   # 45.123
 
@@ -176,7 +178,7 @@ Local Apparent Time in the future but then again, the Solar:: modules
 will probably be a better bet.
 
 If you want more information on the difference between LMT and LAT,
-search the www for 'equation of time' or 'ephemeris'.
+search the www for 'equation of time', 'analemma' or 'ephemeris'.
 
 =head1 CONSTRUCTORS
 
@@ -188,6 +190,10 @@ This module has the following constructor:
 
 Creates a new time zone object usable by DateTime. The zone is calculated
 to the second for the given longitude. 
+
+Eastern longitudes are positive: 0 to +180.
+
+Western longitudes are negative: -180 to 0.
 
 An optional name can be given in order to distinguish between multiple 
 instances. This is the long name accessable via DateTime.
@@ -203,10 +209,11 @@ C<DateTime::TimeZone::LMT> objects provide the following accessor methods:
 =item * offset_for_datetime( $datetime )
 
 Given an object which implements the DateTime.pm API, this method
-returns the offset in seconds for the given datetime.  This takes into
-account historical time zone information, as well as Daylight Saving
-Time.  The offset is determined by looking at the object's UTC Rata
-Die days and seconds.
+returns the offset in seconds for the given datetime. For Olson time
+zones, this takes into account historical time zone information, as
+well as Daylight Saving Time.  The offset is determined by looking
+at the object's UTC Rata Die days and seconds. For LMT time zones,
+the historical data and DST are irrelevant.
 
 =item * offset_for_local_datetime( $datetime )
 
@@ -244,7 +251,8 @@ anything other than display.
 
 Creates an alias that can be called as a string by DateTime methods.
 
-This means you can C<< $dt = DateTime->new( time_zone => 'LMT' ) >> rather
+This means you can C<< $dt = DateTime->new( time_zone => 'LMT' ) >> 
+or C<< $dt = DateTime->new( time_zone => 'my alias' ) >> rather
 than the normal C<< $dt = DateTime->new( time_zone => $lmt ) >>. This is of
 little benefit unless you're accepting a time zone name from a user.
 
@@ -344,7 +352,7 @@ write to the Free Software Foundation, Inc., L<http://fsf.org>.
 
 datetime@perl.org mailing list
 
-http://datetime.perl.org/
+L<http://datetime.perl.org/>
 
 
 =cut
