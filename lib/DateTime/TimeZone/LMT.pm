@@ -34,6 +34,7 @@ sub new {
 	);
         if (exists $p{name}) {
           $self{name} = $p{name};
+          make_alias(\%self, $p{name});
         }
         else {
           $self{name} = '';
