@@ -36,9 +36,10 @@ use lib File::Spec->catdir( File::Spec->curdir, 't' );
 
 use DateTime::TimeZone::LMT;
 
-plan tests => 16;
+plan tests => 29;
 
 my $LMT = DateTime::TimeZone::LMT->new( longitude => 150 );
+my $LMT_named = DateTime::TimeZone::LMT->new( longitude => 150, name => 'LMT' );
 my $dt;
 
 eval { $dt = DateTime->now( time_zone => $LMT ) };
@@ -51,9 +52,11 @@ eval { $dt->subtract( years => 400 ) };
 is( $@, '', "Can subtract 400 years" );
 
 eval { $dt = DateTime->new( year => 2000, month => 6, hour => 1, time_zone => $LMT ) };
+is( $@, '',       'make sure that local time is always respected' );
 is( $dt->hour, 1, 'make sure that local time is always respected' );
 
 eval { $dt = DateTime->new( year => 2000, month => 12, hour => 1, time_zone => $LMT ) };
+is( $@, '',       'make sure that local time is always respected' );
 is( $dt->hour, 1, 'make sure that local time is always respected' );
 
 eval { 
@@ -62,6 +65,7 @@ eval {
 		time_zone => 'Australia/Melbourne', 
 	)->set_time_zone( $LMT );
 };
+is( $@, '',       'make sure that we can convert to LMT' );
 is( $dt->hour, 1, 'make sure that we can convert to LMT' );
 
 my $melb = DateTime::TimeZone->new(name => 'Australia/Melbourne');
@@ -72,6 +76,7 @@ eval {
                 time_zone => $LMT, 
         )->set_time_zone( $melb );
 };
+is( $@, '',       'make sure that we can convert from LMT (object) to Olson (object)' );
 is( $dt->hour, 1, 'make sure that we can convert from LMT (object) to Olson (object)' );
 
 eval { 
@@ -80,6 +85,7 @@ eval {
 		time_zone => $LMT, 
 	)->set_time_zone( 'Australia/Melbourne' );
 };
+is( $@, '',       'make sure that we can convert from LMT (object) to Olson (name)' );
 is( $dt->hour, 1, 'make sure that we can convert from LMT (object) to Olson (name)' );
 
 eval { 
@@ -88,6 +94,7 @@ eval {
                 time_zone => 'LMT', 
         )->set_time_zone( $melb );
 };
+is( $@, '',       'make sure that we can convert from LMT (name) to Olson (object)' );
 is( $dt->hour, 1, 'make sure that we can convert from LMT (name) to Olson (object)' );
 
 eval { 
@@ -96,6 +103,7 @@ eval {
                 time_zone => 'LMT', 
         )->set_time_zone( 'Australia/Melbourne' );
 };
+is( $@, '',       'make sure that we can convert from LMT (name) to Olson (name)' );
 is( $dt->hour, 1, 'make sure that we can convert from LMT (name) to Olson (name)' );
 
 my $float = DateTime::TimeZone->new(name => 'floating');
@@ -106,6 +114,7 @@ eval {
                 time_zone => $LMT, 
         )->set_time_zone( $float );
 };
+is( $@, '',       'make sure that we can convert from LMT (object) to Floating (object)' );
 is( $dt->hour, 1, 'make sure that we can convert from LMT (object) to Floating (object)' );
 
 eval { 
@@ -114,6 +123,7 @@ eval {
 		time_zone => $LMT, 
 	)->set_time_zone( 'floating' );
 };
+is( $@, '',       'make sure that we can convert from LMT (object) to Floating (name)' );
 is( $dt->hour, 1, 'make sure that we can convert from LMT (object) to Floating (name)' );
 
 eval { 
@@ -122,6 +132,7 @@ eval {
                 time_zone => 'LMT', 
         )->set_time_zone( $float );
 };
+is( $@, '',       'make sure that we can convert from LMT (name) to Floating (object)' );
 is( $dt->hour, 1, 'make sure that we can convert from LMT (name) to Floating (object)' );
 
 eval { 
@@ -130,6 +141,7 @@ eval {
                 time_zone => 'LMT', 
         )->set_time_zone( 'floating' );
 };
+is( $@, '',       'make sure that we can convert from LMT (name) to Floating (name)' );
 is( $dt->hour, 1, 'make sure that we can convert from LMT (name) to Floating (name)' );
 
 eval { 
@@ -140,6 +152,7 @@ eval {
 	->set_time_zone( 'floating' )
 	->set_time_zone( 'Australia/Melbourne' );
 };
+is( $@, '',       'make sure that we can convert from LMT to Floating to Olson' );
 is( $dt->hour, 1, 'make sure that we can convert from LMT to Floating to Olson' );
 
 eval { 
@@ -148,6 +161,7 @@ eval {
 		time_zone => $LMT, 
 	)->set_time_zone( 'UTC' );
 };
+is( $@, '',        'make sure that we can convert from LMT to UTC' );
 is( $dt->hour, 15, 'make sure that we can convert from LMT to UTC' );
 
 

@@ -36,7 +36,7 @@ use lib File::Spec->catdir( File::Spec->curdir, 't' );
 
 use DateTime::TimeZone::LMT;
 
-plan tests => 6;
+plan tests => 8;
 
 my $LMT = new DateTime::TimeZone::LMT( longitude => 150 );
 my $dt;
@@ -59,6 +59,7 @@ eval {
 		time_zone => 'Longitude', 
 	)->set_time_zone( 'Australia/Melbourne' );
 };
+is( $@, '',       'make sure that we can convert alias to Olson' );
 is( $dt->hour, 1, 'make sure that we can convert alias to Olson' );
 
 eval { 
@@ -67,6 +68,7 @@ eval {
 		time_zone => 'Longitude', 
 	)->set_time_zone( 'LMT' );
 };
+is( $@, '',       'make sure that we can convert custom name to LMT' );
 is( $dt->hour, 1, 'make sure that we can convert custom name to LMT' );
 
 

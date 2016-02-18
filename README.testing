@@ -116,8 +116,8 @@ After the first round, checking is much simpler:
 
 I still have to redo the full
 
-  tar -zxvf DateTime-TimeZone-LMT-1.00.tar.gz
-  cd DateTime-TimeZone-LMT-1.00
+  tar -zxvf DateTime-TimeZone-LMT-1.01.tar.gz
+  cd DateTime-TimeZone-LMT-1.01
   perl Makefile.PL
   make
   make test
@@ -126,7 +126,7 @@ each time I change something in the module or its distribution.
 
 =head2 Testing errors
 
-L<Test::Fatal> is recommanded, but not required. It is not installed
+L<Test::Fatal> is recommended, but not required. It is not installed
 in the sandbox. So I can check that the built-in tests will not crash
 on a L<Test::Fatal>-less installation. And then, after taking a snapshot
 of the virtual machine, I install L<Test::Fatal> and I run the tests once
