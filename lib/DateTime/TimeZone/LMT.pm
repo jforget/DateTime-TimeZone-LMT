@@ -144,9 +144,13 @@ __END__
 
 DateTime::TimeZone::LMT - A Local Mean Time time zone for DateTime
 
+=head1 VERSION
+
+This documentation refers to DateTime::TimeZone::LMT version 1.01.
+
 =head1 SYNOPSIS
 
-  use DateTime::TimeZone::LMT
+  use DateTime::TimeZone::LMT;
 
   # Somewhere in Hawaii
   my $tz_lmt = DateTime::TimeZone::LMT->new( 
@@ -186,6 +190,10 @@ will probably be a better bet.
 
 If you want more information on the difference between LMT and LAT,
 search the www for 'equation of time', 'analemma' or 'ephemeris'.
+
+(Shameless plug-in) You can for example take a look at the example
+text F<sun.pdf> in the repository
+L<https://github.com/jforget/metaperlualatex>.
 
 =head1 CONSTRUCTORS
 
@@ -310,6 +318,15 @@ This class also contains the following function:
 Given a longitude, this method returns a string offset.
 
 =back
+
+=head1 DEPENDENCIES
+
+This module depends on basic DateTime modules: L<DateTime> and L<DateTime::TimeZone>.
+It depends also on L<Params::Validate>.
+
+=head1 BUGS AND LIMITATIONS
+
+No known bugs.
 
 =head1 SUPPORT
 
