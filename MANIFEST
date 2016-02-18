@@ -10,3 +10,4 @@ t/02basic.t
 t/03datetime.t
 t/04alias.t
 t/05change.t
+t/06fatal.t

@@ -24,6 +24,8 @@ sub new {
 		longitude => { type => SCALAR },
 		name =>      { type => SCALAR, optional => 1 }
 	});
+        croak("Your longitude '$p{longitude}' must be between numeric")
+          unless $p{longitude} =~ /^[-+]?\d+(\.\d+)?$/;
 	croak("Your longitude must be between -180 and +180") unless $p{longitude} <= 180 and $p{longitude} >= -180;
 
 	my %self = (
@@ -63,7 +65,9 @@ sub name {
 sub longitude { 
 	my $self = shift;
 	my $new_longitude = shift;
-	if ($new_longitude) {	
+	if ($new_longitude) {
+                croak("Your longitude '$new_longitude' must be between numeric")
+                  unless $new_longitude =~ /^[-+]?\d+(\.\d+)?$/;
 		croak("Your longitude must be between -180 and +180") 
 			unless $new_longitude <= 180 and $new_longitude >= -180;
 
