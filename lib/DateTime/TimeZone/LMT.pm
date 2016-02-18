@@ -100,6 +100,8 @@ sub make_alias {
   my $self = shift;
   my $name = shift || 'LMT';
 
+  # Devel::Cover will mention a missed line. It is unavoidable. But be assured that
+  # I have tested both in two different runs in a sandbox
   my $vers = $DateTime::TimeZone::VERSION;
   if ($vers lt '0.80') {
     $DateTime::TimeZone::LINKS{ $name } = $self->{offset};

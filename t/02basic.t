@@ -28,27 +28,31 @@
 #
 
 use strict;
-
+use warnings;
 use File::Spec;
 use Test::More;
+use DateTime;
 
 use lib File::Spec->catdir( File::Spec->curdir, 't' );
 
 use DateTime::TimeZone::LMT;
 
-plan tests => 52;
+plan tests => 9 * 13;
 
-for (my $lat=0; $lat <= 360; $lat+=30) {
-    my $tz = DateTime::TimeZone::LMT->new( 
-	longitude => $lat-180, 
-    );
-    isa_ok( $tz, 'DateTime::TimeZone::LMT' );
-    is( $tz->longitude, $lat-180, 'Longitude is remembered' );
-    is( $tz->is_floating, 0, 'should not be floating' );
-    is( $tz->is_utc, 0, 'should not be UTC' );
+my $date_jan = DateTime->new(year => 2016, month => 1, day => 1);
+my $date_jul = DateTime->new(year => 2016, month => 7, day => 1);
+
+for (my $long=0; $long <= 360; $long+=30) {
+  my $tz = DateTime::TimeZone::LMT->new( 
+    longitude => $long-180, 
+  );
+  isa_ok( $tz, 'DateTime::TimeZone::LMT' );
+  is( $tz->longitude,                      $long-180, 'Longitude is remembered' );
+  is( $tz->is_floating,                    0,         'should not be floating' );
+  is( $tz->is_utc,                         0,         'should not be UTC' );
+  is( $tz->is_olson,                       0,         'should not be based on Olson database' );
+  is( $tz->category,                       'Solar',   'should be based on sun movement, more or less' );
+  is( $tz->short_name_for_datetime,        'LMT',     'short name' );
+  is( $tz->is_dst_for_datetime($date_jan), 0,         'no DST in January' );
+  is( $tz->is_dst_for_datetime($date_jul), 0,         'no DST in July' );
 }
-
-
-
-
-
