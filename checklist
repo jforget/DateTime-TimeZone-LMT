@@ -24,11 +24,14 @@ lib/DateTime/TimeZone/LMT.pm top of the file
 -- version number
 -- copyright years
 
+lib/DateTime/TimeZone/LMT.pm POD "VERSION" paragraph
+-- version number
+
 lib/DateTime/TimeZone/LMT.pm POD "COPYRIGHT" paragraph
 -- copyright years
 
 Makefile.PL
--- version number (no, use "VERSION_FROM")
+-- version number in "provides"
 -- copyright years
 
 t/*.t
@@ -50,11 +53,12 @@ Coverage: preferably with perlbrew perl-lgdbl (or later?) instead of system perl
 Build META.{json,yml} and .tar.gz with perlbrew perl-lgdbl (or other? perl-5.20.2?)
 
 After creating the .tar.gz archive, check contents of META.{json,yml}:
+  abstract
   version number (2x)
   minimum perl version
   provides (with version number)
   repository
-  
+
 After release
 =============
 
