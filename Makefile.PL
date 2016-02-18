@@ -40,7 +40,7 @@ WriteMakefile(
     },
     'AUTHOR'        => [ 'Rick Measham <rickm@cpan.org>', 'Jean Forget <JFORGET@cpan.org>' ],
     'LICENSE'           => 'perl',
-    # The oldest Perl to check DT::TS::LMT 1.00 is 5.6.1. Therefore, I guess DT::TZ::LMT 1.01 and next will work in 5.6.1 too.
+    # The oldest Perl to check DT::TS::LMT 1.00 is 5.6.1. Therefore, I guess DT::TZ::LMT 1.02 and next will work in 5.6.1 too.
     MIN_PERL_VERSION => '5.6.1',
     META_MERGE       => {
        prereqs => {
@@ -63,7 +63,7 @@ WriteMakefile(
        provides       => {
            'DateTime::TimeZone::LMT' => {
                 file => 'lib/DateTime/TimeZone/LMT.pm',
-                version => '1.01',
+                version => '1.02',
            },
        },
        'meta-spec' => { version => 2 },

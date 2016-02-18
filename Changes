@@ -1,5 +1,7 @@
 Revision history for Perl extension DateTime::TimeZone::LMT.
 
+1.02  ????
+
 1.01  Thursday 2016-02-18
         - check POD documentation and fix RT ticket 51893
         - compatible with internals of DateTime::TimeZone 0.80 and later (RT 39340)

@@ -11,7 +11,7 @@ use strict;
 use warnings;
 use vars qw( $VERSION );
 
-$VERSION = '1.01';
+$VERSION = '1.02';
 
 use Params::Validate qw( validate validate_pos SCALAR ARRAYREF BOOLEAN );
 use Carp;
@@ -146,7 +146,7 @@ DateTime::TimeZone::LMT - A Local Mean Time time zone for DateTime
 
 =head1 VERSION
 
-This documentation refers to DateTime::TimeZone::LMT version 1.01.
+This documentation refers to DateTime::TimeZone::LMT version 1.02.
 
 =head1 SYNOPSIS
 
