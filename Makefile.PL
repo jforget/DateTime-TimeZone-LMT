@@ -25,8 +25,8 @@
 #     along with this program; if not, write to the Free Software Foundation,
 #     Inc., <http://www.fsf.org/>.
 #
-use 5.005;
-use ExtUtils::MakeMaker;
+use 5.006001;
+use ExtUtils::MakeMaker 6.5702;
 
 WriteMakefile(
     'NAME'              => 'DateTime::TimeZone::LMT',
@@ -43,6 +43,7 @@ WriteMakefile(
     # The oldest Perl to check DT::TS::LMT 1.00 is 5.6.1. Therefore, I guess DT::TZ::LMT 1.02 and next will work in 5.6.1 too.
     MIN_PERL_VERSION => '5.6.1',
     META_MERGE       => {
+       dynamic_config => 0,
        prereqs => {
          runtime => {
            requires => {
@@ -53,10 +54,14 @@ WriteMakefile(
                'perl'               => '5.6.1',
            },
          },
-         build => {
+         configure => {
+           requires => {
+             'ExtUtils::MakeMaker' => '6.57_02', # the first version to accept several authors in an arrayref
+           },
+         },
+         test => {
            requires => {
              'Test::More'          => '0',
-             'ExtUtils::MakeMaker' => '6.57_02', # the first version to accept several authors in an arrayref
            },
          },
        },
