@@ -1,7 +1,7 @@
 # -*- encoding: utf-8; indent-tabs-mode: nil -*-
 #
 #     Perl DateTime extension for creating a custom time zone for local solar mean time
-#     Copyright (C) 2003, 2016 Rick Measham and Jean Forget
+#     Copyright (C) 2003, 2016, 2021 Rick Measham and Jean Forget
 #
 #     See the license in the embedded documentation below.
 #
@@ -333,9 +333,26 @@ No known bugs.
 Support for this module is provided via the datetime@perl.org email
 list.  See L<http://lists.perl.org/> for more details.
 
-Please submit bugs to the CPAN RT system at
-L<http://rt.cpan.org/NoAuth/ReportBug.html?Queue=datetime%3A%3Atimezone%3A%3Almt>
-or via email at bug-datetime-timezone-lmt@rt.cpan.org.
+Please   report  any   bugs   or  feature   requests   to  Github   at
+C<https://github.com/jforget/DateTime-TimeZone-LMT>,  and   create  an
+issue or submit a pull request.
+
+If you have no  feedback after a week or so, try to  reach me by email
+at JFORGET  at cpan  dot org.  The notification  from Github  may have
+failed to reach  me. In your message, please  mention the distribution
+name in the subject, so my spam  filter and I will easily dispatch the
+email to the proper folder.
+
+On the other  hand, I may be  on vacation or away from  Internet for a
+good  reason. Do  not be  upset if  I do  not answer  immediately. You
+should write  me at a leasurely  rythm, about once per  month, until I
+react.
+
+If after about six  months or a year, there is  still no reaction from
+me, you can worry and start the CPAN procedure for module adoption.
+See L<https://groups.google.com/g/perl.module-authors/c/IPWjASwuLNs>
+L<https://www.cpan.org/misc/cpan-faq.html#How_maintain_module>
+and L<https://www.cpan.org/misc/cpan-faq.html#How_adopt_module>.
 
 =head1 AUTHOR
 
@@ -346,9 +363,9 @@ Co-maintainer: Jean Forget (JFORGET at cpan dot org).
 
 =head1 COPYRIGHT
 
-Copyright (C) 2003, 2016 Rick Measham and Jean Forget.  All rights
-reserved.  This program is free software; you can redistribute it
-and/or modify it under the same terms as Perl itself: GNU Public
+Copyright  (C) 2003,  2016, 2021  Rick  Measham and  Jean Forget.  All
+rights reserved. This  program is free software;  you can redistribute
+it and/or  modify it under the  same terms as Perl  itself: GNU Public
 License version 1 or later and Perl Artistic License.
 
 The full text of the license can be found in the F<LICENSE> file included
@@ -368,9 +385,9 @@ WITHOUT   ANY  WARRANTY;   without  even   the  implied   warranty  of
 MERCHANTABILITY  or FITNESS  FOR A  PARTICULAR PURPOSE.   See  the GNU
 General Public License for more details.
 
-You  should have received  a copy  of the  GNU General  Public License
+You should  have received  a copy  of the  GNU General  Public License
 along with this program; if not, see <http://www.gnu.org/licenses/> or
-write to the Free Software Foundation, Inc., L<http://fsf.org>.
+contact the Free Software Foundation, Inc., L<http://fsf.org>.
 
 =head1 SEE ALSO
 

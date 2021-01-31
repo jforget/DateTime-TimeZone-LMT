@@ -2,7 +2,7 @@
 #
 #     t/06fatal.t - checking the error messages (using Test::Fatal)
 #     Test script for DateTime::TimeZone::LMT
-#     Copyright (C) 2016 Rick Measham and Jean Forget
+#     Copyright (C) 2016, 2021 Rick Measham and Jean Forget
 #
 #     This program is distributed under the same terms as Perl 5.16.3:
 #     GNU Public License version 1 or later and Perl Artistic License

@@ -1,7 +1,7 @@
 #!/usr/bin/perl -w
 #     t/04alias.t - checking alias creation and usage for LMT time zones
 #     Test script for DateTime::TimeZone::LMT
-#     Copyright (C) 2003, 2016 Rick Measham and Jean Forget
+#     Copyright (C) 2003, 2016, 2021 Rick Measham and Jean Forget
 #
 #     This program is distributed under the same terms as Perl:
 #     GNU Public License version 1 or later and Perl Artistic License
